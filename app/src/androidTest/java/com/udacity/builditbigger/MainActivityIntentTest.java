@@ -8,6 +8,7 @@ import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.jokelibrary.FunnyJokes;
 import com.example.jokelibraryandroid.JokeActivity;
 import com.udacity.gradle.builditbigger.MainActivity;
 import com.udacity.gradle.builditbigger.R;
@@ -24,6 +25,9 @@ import static androidx.test.espresso.intent.Intents.intending;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtraWithKey;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.isInternal;
+import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNot.not;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -48,7 +52,8 @@ public class MainActivityIntentTest {
 
         onView(withId(R.id.jokeButton)).perform(click());
 
-        intended(hasExtraWithKey(JokeActivity.JOKE_KEY));
+        intended(hasExtra(is(JokeActivity.JOKE_KEY),not(isEmptyString())));
+
     }
 
     @Test
