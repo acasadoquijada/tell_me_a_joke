@@ -2,6 +2,8 @@ package com.udacity.gradle.builditbigger;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import com.google.android.gms.ads.AdView;
 public class MainActivityFragment extends Fragment {
 
     public MainActivityFragment() {
+
     }
 
     @Override
@@ -31,6 +34,9 @@ public class MainActivityFragment extends Fragment {
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         mAdView.loadAd(adRequest);
+
         return root;
     }
+
+
 }

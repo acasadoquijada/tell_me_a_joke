@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -29,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        findViewById(R.id.jokeButton).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                new EndpointsAsyncTask().execute(getApplicationContext());
+            }
+        });
     }
 
 
@@ -55,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-
         new EndpointsAsyncTask().execute(this);
 
 //        Toast.makeText(this, funnyJokes.tellAJoke(), Toast.LENGTH_SHORT).show();
@@ -64,6 +71,18 @@ public class MainActivity extends AppCompatActivity {
     public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
         private  MyApi myApiService = null;
         private Context context;
+        private ProgressDialog loadingDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            loadingDialog = new ProgressDialog(MainActivity.this);
+            loadingDialog.setMessage("Loading a funny joke!");
+            loadingDialog.setIndeterminate(false);
+            loadingDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            loadingDialog.setCancelable(false);
+            loadingDialog.show();
+        }
 
         @Override
         protected String doInBackground(Context... params) {
@@ -97,7 +116,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-            Intent intent = new Intent(context, JokeActivity.class);
+            loadingDialog.dismiss();
+
+            Intent intent = new Intent(getApplicationContext(), JokeActivity.class);
 
             intent.putExtra(JokeActivity.JOKE_KEY,result);
 

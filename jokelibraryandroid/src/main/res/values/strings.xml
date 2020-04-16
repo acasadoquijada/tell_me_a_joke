@@ -1,3 +1,4 @@
 <resources>
     <string name="joke_label">Please admire below the magnificent quality of the joke</string>
+    <string name="joke_button">Tell me a joke!</string>
 </resources>
