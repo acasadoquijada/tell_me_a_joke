@@ -55,7 +55,7 @@ public class JokeActivityIntentTest {
     @Test
     public void clickShareButton_SharesJoke() {
 
-        onView(withId(R.id.share)).perform(click());
+        onView(withId(R.id.shareImageView)).perform(click());
 
         // Obtained from here:
         // https://groups.google.com/forum/#!topic/android-testing-support-library/Mj3tF5S7puU

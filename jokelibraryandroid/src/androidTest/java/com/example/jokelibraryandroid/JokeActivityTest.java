@@ -45,9 +45,10 @@ public class JokeActivityTest {
     @Test
     public void jokeActivityIsDisplayed(){
 
-        onView(withId(R.id.jokeLabel)).check(matches(isDisplayed()));
-
         onView(withId(R.id.jokeText)).check(matches(isDisplayed()));
+
+        onView(withId(R.id.shareText)).check(matches(isDisplayed()));
+
     }
 
     @Test

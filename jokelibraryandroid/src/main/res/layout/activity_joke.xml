@@ -8,31 +8,42 @@
     tools:context=".JokeActivity">
 
     <TextView
-        android:id="@+id/jokeLabel"
+        android:id="@+id/jokeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="I'm a super funny joke" />
+
+    <TextView
+        android:id="@+id/shareText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/joke_label"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Joke introduction" />
-
-    <TextView
-        android:id="@+id/jokeText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="22sp"
+        android:gravity="center"
+        android:text="@string/shareJoke"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jokeLabel"
-        tools:text="I'm a super funny joke" />
+        app:layout_constraintTop_toBottomOf="@+id/jokeText" />
+
+    <ImageView
+        android:id="@+id/shareImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/shareText"
+        app:layout_constraintStart_toEndOf="@+id/shareText"
+        app:layout_constraintTop_toBottomOf="@+id/shareText"
+        app:srcCompat="@drawable/ic_joke" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

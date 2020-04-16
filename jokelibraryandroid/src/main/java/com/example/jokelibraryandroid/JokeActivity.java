@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,33 +32,21 @@ public class JokeActivity extends AppCompatActivity {
         TextView jokeTextView = findViewById(R.id.jokeText);
 
         jokeTextView.setText(mJoke);
+
+        ImageView jokeImageView = findViewById(R.id.shareImageView);
+        jokeImageView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                shareJoke();
+            }
+        });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
+
+    public void shareJoke(){
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, mJoke);
+        startActivity(Intent.createChooser(sharingIntent, "Share joke"));
     }
-
-    /**
-     * Method run when a menu item is clicked to sort the movies
-     * @param item clicked
-     * @return boolean result of the operation
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemThatWasClickedId = item.getItemId();
-
-        if(itemThatWasClickedId == R.id.share){
-//            Toast.makeText(this,"SHARE THINGS",Toast.LENGTH_LONG).show();
-            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-            sharingIntent.setType("text/plain");
-            sharingIntent.putExtra(Intent.EXTRA_TEXT, mJoke);
-            startActivity(Intent.createChooser(sharingIntent, "Share joke"));
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 }
