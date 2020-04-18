@@ -1,36 +1,19 @@
 package com.udacity.gradle.builditbigger;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
-
-import com.example.jokelibrary.FunnyJokes;
-import com.example.jokelibraryandroid.JokeActivity;
-import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
-import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
-import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
-
-import java.io.IOException;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivitySource extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_source);
 
         if(savedInstanceState == null){
             populateUI();
@@ -38,11 +21,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void populateUI(){
+
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        MainActivityFragment mainActivityFragment = new MainActivityFragment();
+        MainActivitySourceFragment mainActivitySource = new MainActivitySourceFragment();
 
-        fragmentManager.beginTransaction().add(R.id.fragment,mainActivityFragment).commit();
+        fragmentManager.beginTransaction().add(R.id.fragment, mainActivitySource).commit();
     }
 
     @Override

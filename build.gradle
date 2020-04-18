@@ -20,3 +20,8 @@ allprojects {
         google()
     }
 }
+/*
+task testing{
+    project(':backend').tasks.build.execute()
+}*/
+

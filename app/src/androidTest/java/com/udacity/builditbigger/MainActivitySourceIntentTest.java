@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.pm.ActivityInfo;
 
-import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
-import com.example.jokelibrary.FunnyJokes;
 import com.example.jokelibraryandroid.JokeActivity;
-import com.udacity.gradle.builditbigger.MainActivity;
+import com.udacity.gradle.builditbigger.MainActivitySource;
 import com.udacity.gradle.builditbigger.R;
 
 import org.junit.Before;
@@ -30,15 +28,14 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.core.IsNot.not;
 
 @RunWith(AndroidJUnit4.class)
-public class MainActivityIntentTest {
+public class MainActivitySourceIntentTest {
 
     @Rule
-    public IntentsTestRule<MainActivity> mainActivityIntentsTestRule =
-            new IntentsTestRule<>(MainActivity.class);
+    public IntentsTestRule<MainActivitySource> mainActivityIntentsTestRule =
+            new IntentsTestRule<>(MainActivitySource.class);
 
     @Before
     public void stubIntent(){
