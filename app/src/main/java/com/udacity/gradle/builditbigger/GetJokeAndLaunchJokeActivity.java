@@ -67,6 +67,11 @@ public class GetJokeAndLaunchJokeActivity extends AsyncTask<Context, Void, Strin
 
         loadingDialog.dismiss();
 
+        // Here I should start a JokeActivityFree or JokeActivityPaid
+        // Free version sets a boolean to true in this class
+        // Then we check it, and start JokeActivityFree
+        // JokeActivityFree needs to be implemented, Follow similar approach
+        // than in "app"
         Intent intent = new Intent(context, JokeActivity.class);
 
         intent.putExtra(JokeActivity.JOKE_KEY,result);

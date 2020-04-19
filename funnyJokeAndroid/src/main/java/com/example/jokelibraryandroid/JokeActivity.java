@@ -43,6 +43,7 @@ public class JokeActivity extends AppCompatActivity {
     }
 
 
+    // This could be a class static (?)
     public void shareJoke(){
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");

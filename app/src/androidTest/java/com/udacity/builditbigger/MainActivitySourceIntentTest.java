@@ -50,7 +50,6 @@ public class MainActivitySourceIntentTest {
         onView(withId(R.id.jokeButton)).perform(click());
 
         intended(hasExtra(is(JokeActivity.JOKE_KEY),not(isEmptyString())));
-
     }
 
     @Test

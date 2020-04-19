@@ -9,6 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <include
+        android:id="@+id/fragment_main_in_free"
         layout="@layout/fragment_main_source"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -4,26 +4,36 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.pm.ActivityInfo;
 
+import androidx.test.espresso.IdlingRegistry;
+import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.example.jokelibraryandroid.JokeActivity;
+import com.udacity.gradle.builditbigger.AdViewIdlingResource;
+import com.udacity.gradle.builditbigger.MainActivityFragmentFree;
 import com.udacity.gradle.builditbigger.MainActivityFree;
 import com.udacity.gradle.builditbigger.MainActivitySource;
 import com.udacity.gradle.builditbigger.R;
 
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.Intents.intending;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtraWithKey;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.isInternal;
+import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static org.hamcrest.Matchers.isEmptyString;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
@@ -33,6 +43,8 @@ import static org.hamcrest.core.IsNot.not;
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityFreeIntentTest {
+
+    private AdViewIdlingResource mAdResource;
 
     @Rule
     public IntentsTestRule<MainActivityFree> mainActivityIntentsTestRule =
@@ -45,10 +57,33 @@ public class MainActivityFreeIntentTest {
         intending(not(isInternal())).respondWith(result);
     }
 
+    @Before
+    public void setUp() {
+        MainActivityFragmentFree m = (MainActivityFragmentFree)
+                mainActivityIntentsTestRule.getActivity().getSupportFragmentManager().getFragments().get(0);
+
+        mAdResource = new AdViewIdlingResource(m.getAdView());
+        IdlingRegistry.getInstance().register(mAdResource);
+    }
+
+    @After
+    public void tearDown() {
+        IdlingRegistry.getInstance().unregister(mAdResource);
+    }
+
     @Test
     public void clickOnButton_CreatesCorrectIntentInfo(){
 
+        mainActivityIntentsTestRule.getActivity().
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        // Wait to load
+        mAdResource.setIsLoadingAd(true);
+
         onView(withId(R.id.jokeButton)).perform(click());
+
+        onView(withContentDescription("Interstitial close button")).check(matches(isEnabled()));
+        onView(isRoot()).perform(ViewActions.pressBack());
 
         intended(hasExtra(is(JokeActivity.JOKE_KEY),not(isEmptyString())));
 
@@ -58,8 +93,17 @@ public class MainActivityFreeIntentTest {
     public void clickOnButton_CreatesCorrectIntentInfo_AfterRotation() {
 
         mainActivityIntentsTestRule.getActivity().
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        clickOnButton_CreatesCorrectIntentInfo();
+        // Wait to load
+        mAdResource.setIsLoadingAd(true);
+
+        onView(withId(R.id.jokeButton)).perform(click());
+
+        onView(withContentDescription("Interstitial close button")).check(matches(isEnabled()));
+        onView(isRoot()).perform(ViewActions.pressBack());
+
+        intended(hasExtra(is(JokeActivity.JOKE_KEY),not(isEmptyString())));
+
     }
 }
