@@ -25,14 +25,18 @@ The relationship between the modules can be seen in this diagram:
 
 ![diagram](docs/images/project-diagram.png)
 
+Image obtained from the Udacity's Android Developer Nanodegree
 
 ### Application flavors
 
 As mentioned before the app has two flavors, free and paid.
 
-The *source Flavor*, from where both inherit, doesn't have adds. For this reason the paid Flavor uses this resources instead of creating specific ones. See [here](https://github.com/acasadoquijada/tell_me_a_joke/tree/master/app/src/paid) 
+The *source Flavor*, from where both inherit, doesn't contains adds. For this reason the paid Flavor uses this resources instead of creating specific ones. See [here](https://github.com/acasadoquijada/tell_me_a_joke/tree/master/app/src/paid) 
 
 On the other hand, for the free one there are some specific resources that can be found [here](https://github.com/acasadoquijada/tell_me_a_joke/tree/master/app/src/free) 
+
+
+## How to install and use TODO
 
 ### Screenshots TODO
 
