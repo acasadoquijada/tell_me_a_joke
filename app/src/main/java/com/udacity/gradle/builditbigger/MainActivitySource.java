@@ -7,6 +7,10 @@ import androidx.fragment.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * MainActivity without adds. Because of this is used in the paid Flavor by setting it in the
+ * paid Android Manifest
+ */
 
 public class MainActivitySource extends AppCompatActivity {
 
@@ -20,6 +24,9 @@ public class MainActivitySource extends AppCompatActivity {
         }
     }
 
+    /**
+     * Creates a Fragment containing the logic to obtained the joke
+     */
     private void populateUI(){
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -27,28 +34,6 @@ public class MainActivitySource extends AppCompatActivity {
         MainActivitySourceFragment mainActivitySource = new MainActivitySourceFragment();
 
         fragmentManager.beginTransaction().add(R.id.fragment, mainActivitySource).commit();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
 }

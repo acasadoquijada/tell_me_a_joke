@@ -44,6 +44,13 @@ public class MainActivitySourceIntentTest {
         intending(not(isInternal())).respondWith(result);
     }
 
+    /**
+     * Check that the intent created after pressing the joke button contains
+     * a joke that is not empty
+     *
+     * By doing this, we are testing the GetJokeAndLaunchJokeActivity class that request the joke
+     * to the GCE (backend module)
+     */
     @Test
     public void clickOnButton_CreatesCorrectIntentInfo(){
 
@@ -52,6 +59,9 @@ public class MainActivitySourceIntentTest {
         intended(hasExtra(is(JokeActivity.JOKE_KEY),not(isEmptyString())));
     }
 
+    /**
+     * Same as clickOnButton_CreatesCorrectIntentInfo but rotating the activity
+     */
     @Test
     public void clickOnButton_CreatesCorrectIntentInfo_AfterRotation() {
 

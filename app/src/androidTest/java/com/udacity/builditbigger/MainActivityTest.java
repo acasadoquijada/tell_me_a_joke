@@ -25,6 +25,9 @@ public class MainActivityTest {
     public final ActivityTestRule<MainActivitySource> mMainActivityRule =
             new ActivityTestRule<>(MainActivitySource.class);
 
+    /**
+     * Checks the elements are shown correctly in the Activity
+     */
     @Test
     public void sourceFlavorShowsCorrectInfo() {
 
@@ -46,6 +49,9 @@ public class MainActivityTest {
                 isDescendantOfA(withId(R.id.fragment)))).check(matches(isDisplayed()));
     }
 
+    /**
+     * Same as sourceFlavorShowsCorrectInfo but after rotating the Activity
+     */
     @Test
     public void sourceFlavorShowsCorrectInfo_AfterRotation() {
         mMainActivityRule.getActivity().

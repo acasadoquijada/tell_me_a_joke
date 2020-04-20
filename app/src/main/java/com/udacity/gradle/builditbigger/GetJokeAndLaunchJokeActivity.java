@@ -14,7 +14,18 @@ import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 
 import java.io.IOException;
 
-public class GetJokeAndLaunchJokeActivity extends AsyncTask<Context, Void, String> {
+/**
+ * This AsyncTask class requests a joke to the GCE (backend module) and then
+ * launches a JokeActivity with the result
+ *
+ * This is an independent class in order to be used in both flavors
+ *
+ * This class is tested in:
+ * - MainActivitySourceIntentTest (clickOnButton_CreatesCorrectIntentInfo)
+ * - MainActivityFreeIntentTest (clickOnButton_CreatesCorrectIntentInfo)
+ */
+
+public class GetJokeAndLaunchJokeActivity extends AsyncTask<Void, Void, String> {
 
     private MyApi myApiService = null;
     private Context context;
@@ -23,7 +34,9 @@ public class GetJokeAndLaunchJokeActivity extends AsyncTask<Context, Void, Strin
     public GetJokeAndLaunchJokeActivity(Context context){
         this.context = context;
     }
-
+    /**
+     * Shows dialog while loading the joke
+     */
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -35,8 +48,13 @@ public class GetJokeAndLaunchJokeActivity extends AsyncTask<Context, Void, Strin
         loadingDialog.show();
     }
 
+    /**
+     * Requests a Joke to the GCE (backend module)
+     * The ip set in .setRootUrl must be the one of your machine
+     * @return a joke
+     */
     @Override
-    protected String doInBackground(Context... params) {
+    protected String doInBackground(Void... voids) {
         if(myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
@@ -62,16 +80,15 @@ public class GetJokeAndLaunchJokeActivity extends AsyncTask<Context, Void, Strin
         }
     }
 
+    /**
+     * This method dismiss the dialog and launches the JokeActivity
+     * @param result String containing the joke
+     */
     @Override
     protected void onPostExecute(String result) {
 
         loadingDialog.dismiss();
 
-        // Here I should start a JokeActivityFree or JokeActivityPaid
-        // Free version sets a boolean to true in this class
-        // Then we check it, and start JokeActivityFree
-        // JokeActivityFree needs to be implemented, Follow similar approach
-        // than in "app"
         Intent intent = new Intent(context, JokeActivity.class);
 
         intent.putExtra(JokeActivity.JOKE_KEY,result);

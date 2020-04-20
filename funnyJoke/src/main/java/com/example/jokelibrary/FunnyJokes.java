@@ -3,6 +3,9 @@ package com.example.jokelibrary;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Java class that supplies with jokes
+ */
 public class FunnyJokes {
 
     private final static String[] myJokes = {
@@ -12,6 +15,10 @@ public class FunnyJokes {
             };
 
 
+    /**
+     * Joke getter
+     * @return a random joke
+     */
     public static String tellAJoke(){
 
         Random rand = new Random();

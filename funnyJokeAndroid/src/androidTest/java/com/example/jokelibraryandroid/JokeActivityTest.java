@@ -42,6 +42,9 @@ public class JokeActivityTest {
                 }
             };
 
+    /**
+     * Checks the info is displayed
+     */
     @Test
     public void jokeActivityIsDisplayed(){
 
@@ -51,6 +54,9 @@ public class JokeActivityTest {
 
     }
 
+    /**
+     * Same as jokeActivityIsDisplayed but after rotating the Activity
+     */
     @Test
     public void jokeActivityIsDisplayed_AfterRotation(){
         jokeActivityActivityTestRule.getActivity().
@@ -58,11 +64,17 @@ public class JokeActivityTest {
         jokeActivityIsDisplayed();
     }
 
+    /**
+     * Checks that the joke shown is the expected one
+     */
     @Test
     public void jokeActivityShowsCorrectJoke(){
         onView(withId(R.id.jokeText)).check(matches(withText(testJoke)));
     }
 
+    /**
+     * Same as jokeActivityShowsCorrectJoke but after rotating the activity)
+     */
     @Test
     public void jokeActivityShowsCorrectJoke_AfterRotation(){
         jokeActivityActivityTestRule.getActivity().

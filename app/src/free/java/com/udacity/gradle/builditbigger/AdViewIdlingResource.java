@@ -7,6 +7,8 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdView;
 
 /**
+ * Resource needed it to test the ads in Espresso
+ *
  * Obtained from:
  * https://github.com/firebase/quickstart-android/blob/master/admob/app/src/androidTest/
  * java/com/google/samples/quickstart/admobexample/AdViewIdlingResource.java

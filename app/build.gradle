@@ -43,6 +43,9 @@ android {
             applicationId "com.udacity.gradle.builditbigger.paid"
         }
     }
+
+    dataBinding.enabled = true
+
 }
 
 dependencies {

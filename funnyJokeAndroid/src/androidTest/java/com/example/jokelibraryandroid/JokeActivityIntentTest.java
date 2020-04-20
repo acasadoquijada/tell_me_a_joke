@@ -32,6 +32,9 @@ public class JokeActivityIntentTest {
 
     private static final String testJoke = "I'm a text joke!!";
 
+    /**
+     * We need to do this in order to provide JokeActivity with a joke
+     */
     @Rule
     public final IntentsTestRule<JokeActivity> jokeActivityActivityTestRule =
             new IntentsTestRule<JokeActivity>(JokeActivity.class) {
@@ -52,6 +55,10 @@ public class JokeActivityIntentTest {
 
         intending(not(isInternal())).respondWith(result);
     }
+
+    /**
+     * Check that the intent created contains the correct joke
+     */
     @Test
     public void clickShareButton_SharesJoke() {
 
@@ -65,6 +72,9 @@ public class JokeActivityIntentTest {
                                 hasExtra(Intent.EXTRA_TEXT, testJoke) ))));
     }
 
+    /**
+     * Check that the intent created after rotating the activity contains the correct joke
+     */
     @Test
     public void clickShareButton_SharesJoke_AfterRotation(){
         jokeActivityActivityTestRule.getActivity().

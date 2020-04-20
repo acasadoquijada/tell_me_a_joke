@@ -44,6 +44,9 @@ public class MainActivityFreeTest {
     public final ActivityTestRule<MainActivityFree> mMainFreeActivity =
             new ActivityTestRule<>(MainActivityFree.class);
 
+    /**
+     * Loads the idling resources needed to test the ads
+     */
     @Before
     public void setUp() {
         MainActivityFragmentFree m = (MainActivityFragmentFree)
@@ -53,11 +56,17 @@ public class MainActivityFreeTest {
         IdlingRegistry.getInstance().register(mAdResource);
     }
 
+    /**
+     * Unloads the idling resources
+     */
     @After
     public void tearDown() {
         IdlingRegistry.getInstance().unregister(mAdResource);
     }
 
+    /**
+     * Checks that the info in screen is correct (do not test the ads)
+     */
     @Test
     public void freeFlavourShowsCorrectInfo() {
 
@@ -77,6 +86,9 @@ public class MainActivityFreeTest {
                 isDescendantOfA(withId(R.id.fragment)))).check(matches(isDisplayed()));
     }
 
+    /**
+     * Same as freeFlavourShowsCorrectInfo but after rotating the activity
+     */
     @Test
     public void freeFlavourShowsCorrectInfo_AfterRotation() {
         mMainFreeActivity.getActivity().

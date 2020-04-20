@@ -57,6 +57,9 @@ public class MainActivityFreeIntentTest {
         intending(not(isInternal())).respondWith(result);
     }
 
+    /**
+     * Loads the idling resources needed to test the ads
+     */
     @Before
     public void setUp() {
         MainActivityFragmentFree m = (MainActivityFragmentFree)
@@ -66,11 +69,19 @@ public class MainActivityFreeIntentTest {
         IdlingRegistry.getInstance().register(mAdResource);
     }
 
+    /**
+     * Unloads the idling resources
+     */
     @After
     public void tearDown() {
         IdlingRegistry.getInstance().unregister(mAdResource);
     }
 
+    /**
+     * Checks that the intent information created when pressing the joke button is correct
+     *
+     * We need to ensure that the intent is created after closing the interstitial ad
+     */
     @Test
     public void clickOnButton_CreatesCorrectIntentInfo(){
 
@@ -89,6 +100,9 @@ public class MainActivityFreeIntentTest {
 
     }
 
+    /**
+     * Same as clickOnButton_CreatesCorrectIntentInfo but after rotating the Activity
+     */
     @Test
     public void clickOnButton_CreatesCorrectIntentInfo_AfterRotation() {
 

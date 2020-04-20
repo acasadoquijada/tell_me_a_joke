@@ -25,21 +25,30 @@ import com.google.android.gms.ads.InterstitialAd;
  */
 public class MainActivityFragmentFree extends Fragment {
 
+    private static final String TAG = MainActivityFragmentFree.class.getSimpleName();
 
     private AdView mAdView;
     private InterstitialAd mInterstitialAd;
 
-
     public MainActivityFragmentFree() {
     }
 
-
+    /**
+     * Needed for testing
+     * @return the adview
+     */
     @VisibleForTesting
     public AdView getAdView() {
         return mAdView;
     }
 
-
+    /**
+     * Setup all the ads
+     * @param inflater LayoutInflater object
+     * @param container ViewGroup object
+     * @param savedInstanceState Bundle object
+     * @return the view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,21 +58,19 @@ public class MainActivityFragmentFree extends Fragment {
         setUpInterstitialAd();
 
         mAdView = (AdView) root.findViewById(R.id.adView);
-        // Create an ad request. Check logcat output for the hashed device ID to
-        // get test ads on a physical device. e.g.
-        // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
+
         AdRequest adRequest = new AdRequest.Builder()
-         //       .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         mAdView.loadAd(adRequest);
 
+        // Shows teh interstital ad when the button is pressed
         root.findViewById(R.id.jokeButton).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
                 } else {
-                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                    Log.d(TAG, "The interstitial wasn't loaded yet.");
                 }
             }
         });
@@ -77,23 +84,13 @@ public class MainActivityFragmentFree extends Fragment {
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         mInterstitialAd.setAdListener(new AdListener(){
+            // Once the add is closed the joke is requested and presented
+            // Also loads a new add in case the user goes back to the mainActivity
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
                 mInterstitialAd.loadAd(new AdRequest.Builder().build());
                 new GetJokeAndLaunchJokeActivity(getContext()).execute();
-            }
-
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                Log.d("TAG","LOADED");
-            }
-
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-                Log.d("TAG","FAILED TO LOAD");
             }
         });
     }
