@@ -52,12 +52,13 @@ To install the fee Flavour use the gradle task ***app > tasks > install > instal
 
 To install the paid Flavour use ***app > tasks > install > installPaidDebug***
 
+Please be aware that the tests related to ads may fail due to timing issues. if so, rerun the tests.
 
 ### Screenshots 
 
 ![mainPaid](docs/images/paidMainActivity.jpg) ![mainFree](docs/images/freeMainActivity.jpg)
 
-![ad](docs/images/ad.jpg) ![jokeActivity](docs/images/jokeActivity.jpg)
+![ads](docs/images/ads.jpg) ![jokeActivity](docs/images/jokeActivity.jpg)
 
 
 

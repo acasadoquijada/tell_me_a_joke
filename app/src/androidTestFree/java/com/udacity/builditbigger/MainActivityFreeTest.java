@@ -103,6 +103,9 @@ public class MainActivityFreeTest {
      *
      * Based in https://github.com/firebase/quickstart-android/blob/master/admob/app/src/
      * androidTest/java/com/google/samples/quickstart/admobexample/InterstitialAdTest.java
+     *
+     * Please be aware that the tests related to ads may fail due to timing issues.
+     * if so, rerun the tests.
      */
 
     @Test
