@@ -27,6 +27,19 @@ The relationship between the modules can be seen in this diagram:
 
 Image obtained from the Udacity's Android Developer Nanodegree
 
+### Setup Google Cloud Endpoint
+
+First of all you need to start the Google Cloud Endpoint (backend module) to retrieve the jokes. It is configured to be deployed locally, so some configuration needs to be done:
+
+* In GetJokeAndLaunchJokeActivity.java [line 64](https://github.com/acasadoquijada/tell_me_a_joke/blob/master/app/src/main/java/com/udacity/gradle/builditbigger/GetJokeAndLaunchJokeActivity.java#L64)  you need to set the ip of your machine
+* To use the free Flavor, you need set a valid application ID in its [Manifest file](https://github.com/acasadoquijada/tell_me_a_joke/blob/master/app/src/free/AndroidManifest.xml#L24) . More information about this [here](https://developers.google.com/admob/android/quick-start#update_your_androidmanifestxml) 
+
+The next step is to deploy the GCE0
+
+Open the Gradle tab in Android Studio and run the gradle task ***backend > appengineStart.***
+
+To stop the GCE, use ***backend > appengineStop***
+
 ### Application flavors
 
 As mentioned before the app has two flavors, free and paid.
@@ -35,13 +48,21 @@ The *source Flavor*, from where both inherit, doesn't contains adds. For this re
 
 On the other hand, for the free one there are some specific resources that can be found [here](https://github.com/acasadoquijada/tell_me_a_joke/tree/master/app/src/free) 
 
+To install the fee Flavour use the gradle task ***app > tasks > install > installFreeDebug***
 
-## How to install and use TODO
+To install the paid Flavour use ***app > tasks > install > installPaidDebug***
 
-### Screenshots TODO
+
+### Screenshots 
+
+![mainPaid](docs/images/paidMainActivity.jpg) ![mainFree](docs/images/freeMainActivity.jpg)
+
+![ad](docs/images/ad.jpg) ![jokeActivity](docs/images/jokeActivity.jpg)
+
 
 
 ### External resources
+
 
 The logos used in this applications are the following:
 
